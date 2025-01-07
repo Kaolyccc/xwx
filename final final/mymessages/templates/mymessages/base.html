@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>漂亮莓莓的期中論壇(管理者帳號user / user1234)</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* 全局字體設定 */
+        * {
+            font-family: "標楷體", DFKai-SB, BiauKai, sans-serif !important;
+            font-size: 1.3rem !important;
+            font-weight: bold !important;
+        }
+
+        /* 背景圖案與動畫 */
+        body {
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            color: white !important;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* 飄浮的裝飾元素 */
+        body::before, body::after {
+            content: "🦋";
+            position: fixed;
+            font-size: 2rem;
+            animation: float 6s ease-in-out infinite;
+            opacity: 0.5;
+        }
+
+        body::before {
+            top: 10%;
+            left: 5%;
+        }
+
+        body::after {
+            bottom: 10%;
+            right: 5%;
+            animation-delay: -3s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* 標題字體加粗和放大 */
+        h1, h2, h3, h4, h5, h6, .navbar-brand {
+            font-weight: 900 !important;
+            font-size: 2rem !important;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            color: #2d1b4d !important;
+        }
+
+        /* 导航栏样式 */
+        .navbar {
+            background: linear-gradient(45deg, #c2a8e6, #9b6dff, #7952b3) !important;
+            border-bottom: 3px solid rgba(255, 255, 255, 0.3);
+            padding: 1rem 0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* 内容区块样式 */
+        .container {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 25px;
+            margin-top: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(8px);
+        }
+
+        /* 按钮样式 */
+        .btn {
+            font-size: 1.2rem !important;
+            padding: 10px 25px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+            font-weight: bold !important;
+        }
+
+        /* 登入按鈕特效 */
+        .btn-outline-primary {
+            color: white !important;
+            border: 2px solid #e0cffc !important;
+            background: linear-gradient(45deg, #8250df, #9b6dff) !important;
+        }
+
+        .btn-outline-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-outline-primary::before {
+            content: "🌟";
+            position: absolute;
+            left: -20px;
+            animation: sparkle 2s infinite;
+        }
+
+        @keyframes sparkle {
+            0% { transform: translateX(0) rotate(0deg); opacity: 0; }
+            50% { transform: translateX(50px) rotate(180deg); opacity: 1; }
+            100% { transform: translateX(100px) rotate(360deg); opacity: 0; }
+        }
+
+        /* 註冊按鈕特效 */
+        .btn-primary {
+            background: linear-gradient(45deg, #ff69b4, #da70d6) !important;
+            border: none !important;
+        }
+
+        .btn-primary::before {
+            content: "🎀";
+            position: absolute;
+            left: -20px;
+            animation: ribbon 2s infinite;
+        }
+
+        @keyframes ribbon {
+            0% { transform: translateX(0) scale(1); opacity: 0; }
+            50% { transform: translateX(50px) scale(1.2); opacity: 1; }
+            100% { transform: translateX(100px) scale(1); opacity: 0; }
+        }
+
+        /* 特殊文字效果 */
+        .special-text {
+            background: linear-gradient(45deg, #ff69b4, #da70d6);
+            -webkit-background-clip: text;
+            color: transparent;
+            font-weight: bold;
+        }
+
+        /* 链接悬停效果 */
+        a {
+            position: relative;
+            color: #e0cffc !important;
+            text-decoration: none !important;
+            transition: all 0.3s ease;
+            font-weight: bold !important;
+        }
+
+        a:hover {
+            color: #ff69b4 !important;
+            text-shadow: 0 0 8px rgba(255, 105, 180, 0.5);
+        }
+
+        /* 导航栏品牌装饰 */
+        .navbar-brand::before {
+            content: "🌈";
+            margin-right: 10px;
+        }
+
+        .navbar-brand::after {
+            content: "✨";
+            margin-left: 10px;
+        }
+
+        /* 文章列表樣式 */
+        .post-title {
+            color: #2d1b4d !important;
+            font-weight: 900 !important;
+            font-size: 1.5rem !important;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border-left: 5px solid #9b6dff;
+        }
+
+        .post-content {
+            color: #4a3660 !important;
+            background: rgba(255, 255, 255, 0.4);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 10px;
+            border-left: 5px solid #ff69b4;
+            font-size: 1.2rem !important;
+        }
+
+        /* 文章卡片樣式 */
+        .post-card {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .post-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* 文章資訊樣式 */
+        .post-info {
+            color: #6a4c93 !important;
+            font-size: 1rem !important;
+            margin-top: 10px;
+            padding: 5px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            display: inline-block;
+        }
+
+        /* 文章互動按鈕樣式 */
+        .post-action {
+            margin-top: 15px;
+            padding: 8px 15px;
+            border-radius: 20px;
+            background: linear-gradient(45deg, #c2a8e6, #9b6dff);
+            color: white !important;
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .post-action:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <!-- 其餘HTML內容保持不變 -->
+    <nav class="navbar navbar-expand-lg shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'message_list' %}">論壇</a>
+            <div class="navbar-nav ms-auto">
+                {% if user.is_authenticated %}
+                    <span class="navbar-text me-3">歡迎, <span class="special-text">{{ user.username }}</span></span>
+                    {% if user.profile_picture %}
+                    <a href="{% url 'user_profile' %}" class="btn btn-outline-primary me-2">
+                        <img src="{{ user.profile_picture.url }}" alt="Profile Picture" class="profile-picture" style="width: 35px; height: 35px; border-radius: 50%;">
+                    </a>
+                    {% else %}
+                        <a href="{% url 'user_profile' %}" class="btn btn-outline-primary me-2">
+                            <i class="fas fa-user me-2"></i>proflie
+                        </a>
+                    {% endif %}
+                    <a href="{% url 'logout' %}" class="btn btn-outline-danger">
+                        <i class="fas fa-sign-out-alt me-2"></i>logout
+                    </a>
+                {% else %}
+                    <a href="{% url 'login' %}" class="btn btn-outline-primary me-2">
+                        <i class="fas fa-heart me-2"></i>login
+                    </a>
+                    <a href="{% url 'signup' %}" class="btn btn-primary">
+                        <i class="fas fa-star me-2"></i>signup
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                    <i class="fas fa-info-circle me-2"></i>
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        {% block content %}{% endblock %}
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

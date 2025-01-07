@@ -1,0 +1,15 @@
+{% extends 'mymessages/base.html' %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header">刪除留言</div>
+    <div class="card-body">
+        <p>你確定要刪除這條留言嗎？</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">刪除留言</button>
+            <a href="{% url 'message_list' %}" class="btn btn-secondary">取消</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

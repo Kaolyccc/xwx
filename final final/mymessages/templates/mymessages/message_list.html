@@ -1,0 +1,56 @@
+<!-- message_list.html -->
+{% extends 'mymessages/base.html' %}
+
+{% block content %}
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                {% if user.is_authenticated %}
+                    <div class="card mb-3">
+                        <div class="card-header">發表文章</div>
+                        <div class="card-body">
+                            <form method="post">
+                                {% csrf_token %}
+                                <p class="mb-1">{{ form.title }}</p>
+                                {{ form.content }}
+                                <button type="submit" class="btn btn-primary mt-2">送出文章</button>
+                            </form>
+                        </div>
+                    </div>
+                {% endif %}
+
+                <div class="card">
+                    <div class="card-header">文章列表</div>
+                    <div class="card-body">
+                        {% for message in messages_list %}
+                            {% if message.slug %}
+                                <a href="{% url 'post_detail' message.slug %}">
+                                    <p class="mb-1" style="font-size: 1.5em;">{{ message.title }}</p>
+                                </a>
+                            {% else %}
+                                <p class="mb-1" style="font-size: 1.5em;">{{ message.title }}</p>
+                            {% endif %}
+                            <p>{{ message.content }}</p>
+                            <small class="text-muted d-flex justify-content-between">
+                                {% if message.user.nickname == "" %}
+                                    <span>{{ message.user.username }}(真名) - 撰寫時間: {{ message.created_at|date:"Y-m-d H:i" }}</span>
+                                {% else %}
+                                    <span>{{ message.user.nickname }} - 撰寫時間: {{ message.created_at|date:"Y-m-d H:i" }}</span>
+                                {% endif %}
+                                
+                                {% if user == message.user %}
+                                    <div>
+                                        <a href="{% url 'edit_message' message.id %}" class="btn btn-sm btn-warning">編輯</a>
+                                        <a href="{% url 'delete_message' message.id %}" class="btn btn-sm btn-danger">刪除</a>
+                                    </div>
+                                {% endif %}
+                            </small>
+                        {% empty %}
+                            <p class="text-center text-muted">尚無文章</p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

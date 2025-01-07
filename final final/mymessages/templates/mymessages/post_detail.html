@@ -1,0 +1,40 @@
+{% extends 'mymessages/base.html' %}
+
+{% block content %}
+    <div class="mb-3">
+        <h3>{{ message.title }}</h3>
+        <p class="text-muted">{{ message.created_at|date:"Y-m-d H:i" }}</p>
+        <p>{{ message.content }}</p>
+    </div>
+
+    <!-- 顯示文章標題和內容 -->
+    <p>作者: {{ message.user.nickname|default:message.user.username }}</p>
+
+    <!-- 留言區 -->
+    <h3>💬 留言區</h3>
+    <div class="card">
+        <div class="card-header">留言</div>
+        <div class="card-body">
+            {% for comment in message.comments.all %}
+                <div class="border-bottom pb-3 mb-3">
+                    <p>{{ comment.content }}</p>
+                    <small class="text-muted">{{ comment.user.username }} - 撰寫時間: {{ comment.created_at|date:"Y-m-d H:i" }}</small>
+                </div>
+            {% empty %}
+                <p class="text-center text-muted">尚無留言</p>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- 提交留言表單 -->
+    {% if user.is_authenticated %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">提交留言</button>
+        </form>
+    {% else %}
+        <p>請 <a href="{% url 'login' %}">登入</a> 後才能留言。</p>
+    {% endif %}
+
+{% endblock %}
